@@ -11,3 +11,164 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.task-list {
+  border: 1px solid black;
+  box-shadow: 0.5em 0.5em 0.5em rgba(0,0,0,0.5);
+  padding: 1em;
+  margin: 1em auto;
+  width: min(80%, 500px);
+  color: rgb(102, 102, 102);
+}
+
+@media screen and (max-width: 350px) {
+  .task-list {
+    width: 80%;
+  }
+  .filter-task {
+    flex-flow: column nowrap !important; 
+  }
+  .filter-task button {
+    margin-right: 0 !important;
+  }
+  .results {
+    margin: 0 !important;
+  }
+}
+
+.task-list h1,
+.task-list h2 {
+  text-align: center;
+}
+
+.task-list h1 {
+  color: black;
+}
+
+.add-task input,
+.add-task button { 
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  width: 100%;
+}
+
+.add-task input {
+  padding: 0.5em;
+  border: 2px solid black;
+}
+
+.add-task input:focus,
+.add-task button:focus {
+  outline: 3px solid rgba(0,0,0,0.25);
+}
+
+.add-task button {
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.filter-task {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.hidden-text {
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.filter-task button {
+  text-transform: capitalize;
+  flex: 1;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border-radius: 0px;
+  border: 1px solid rgba(0,0,0,0.25);
+  background-color: white;
+  color: inherit;
+}
+
+.filter-task button:hover {
+  border: 1px solid black;
+  cursor: pointer;
+  color: black;
+}
+
+.filter-task button:nth-child(1),
+.filter-task button:nth-child(2) {
+  margin-right: 0.5em;
+}
+
+.results {
+  margin: 0 2em;
+}
+
+.results h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.results ul {
+  padding-left: 0;
+  list-style-type: none;
+  margin-top: 0;
+}
+
+.results input {
+  appearance: none;
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  background-color: white;
+  border: 2px solid black;
+  position: relative;
+  margin: 1em 1em 1em 0; 
+}
+
+.results input:checked:before {
+  position: absolute;
+  content: '✔';
+  font-size: 3em;
+  top: -0.15em;
+}
+
+.results input:hover,
+.results label:hover {
+  cursor: pointer;
+}
+
+.results label {
+  display: inline-block;
+  vertical-align: 1.75em;
+}
+
+.results button {
+  font-size: 1em;
+  flex: 1;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.results li button:nth-child(1) {
+  border: 2px solid gray;
+  background-color: white;
+  margin-right: 0.5em;
+  color: inherit;
+}
+
+.results li button:nth-child(2) {
+  border: 2px solid rgb(194, 16, 16);
+  background-color: rgb(194, 16, 16);
+  color: white;
+}
+
+.results ul div {
+  display: flex;
+  flex-flow: row nowrap;
+}
