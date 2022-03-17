@@ -59,7 +59,7 @@ code {
 }
 
 .add-task input:focus,
-.add-task button:focus {
+.add-task button:active {
   outline: 3px solid rgba(0,0,0,0.25);
 }
 
