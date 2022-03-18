@@ -6,6 +6,10 @@ import AddTask from './components/AddTask'
 
 function App(props) {
 
+  function addTask(name) {
+    console.log(name);
+  }
+
   const tasks = props.tasks.map( task => 
     <TaskItem 
       id={task.id} 
@@ -20,7 +24,7 @@ function App(props) {
     <article className='task-list'>
       <h1>Task List</h1>
       <section className='add-task'>
-        <AddTask />
+        <AddTask addTask={addTask}/>
       </section>
       <section className='results'>
         <FilterTask />
