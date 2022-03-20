@@ -4,15 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const DATA = [
-  {id: 'task_0', value: 'task0', checked: true, taskName: 'Eat'},
-  {id: 'task_1', value: 'task1', checked: false, taskName: 'Sleep'},
-  {id: 'task_2', value: 'task2', checked: false, taskName: 'Repeat'}
+const TASKS = [
+  {id: 'task_0', value: 'task0', checked: true, name: 'Eat'},
+  {id: 'task_1', value: 'task1', checked: false, name: 'Sleep'},
+  {id: 'task_2', value: 'task2', checked: false, name: 'Repeat'}
 ];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App tasks={DATA}/>
+    <App tasks={TASKS}/>
   </React.StrictMode>,
     document.getElementById('root')
 );
