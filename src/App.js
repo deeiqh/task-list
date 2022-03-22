@@ -46,15 +46,17 @@ function App(props) {
   }
 
   function deleteTask(id) {
-    let t = [];
-    tasks.map(task => t.push(task));
-    for (let i=0; i<tasks.length; i++) {
-      if (t[i].id === id) {
-        t.splice(i, 1);
-        break;
-      }
-    }
-    setTasks(t);
+    // let t = [];
+    // tasks.map(task => t.push(task));
+    // for (let i=0; i<tasks.length; i++) {
+    //   if (t[i].id === id) {
+    //     t.splice(i, 1);
+    //     break;
+    //   }
+    // }
+    // setTasks(t);
+    const remainingTasks = tasks.filter( task => task.id !== id);
+    setTasks(remainingTasks);
   }
 
   return (
