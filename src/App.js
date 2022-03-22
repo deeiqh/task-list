@@ -27,11 +27,35 @@ function App(props) {
       checked={task.checked} 
       name={task.name} 
       key={task.id}
+      toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask={deleteTask}
     />
   );
 
-  const textNoun =  taskList.length != 1 ? ' tasks' : ' task';
+  const textNoun =  taskList.length !== 1 ? ' tasks' : ' task';
   const headingText = taskList.length + textNoun + ' remaining';
+
+  function toggleTaskCompleted(id) { 
+    const toggleTasks = tasks.map( task => {
+      if (task.id === id) {
+        task.checked = !task.checked;
+      }
+      return task;
+    });
+    setTasks(toggleTasks);
+  }
+
+  function deleteTask(id) {
+    let t = [];
+    tasks.map(task => t.push(task));
+    for (let i=0; i<tasks.length; i++) {
+      if (t[i].id === id) {
+        t.splice(i, 1);
+        break;
+      }
+    }
+    setTasks(t);
+  }
 
   return (
     <article className='task-list'>
