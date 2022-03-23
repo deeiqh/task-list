@@ -172,3 +172,16 @@ code {
   display: flex;
   flex-flow: row nowrap;
 }
+
+.results input[type='text'] {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.results form > label {
+  vertical-align: 0;  
+}
+
+.results form{ 
+  margin: 2em 0;
+}

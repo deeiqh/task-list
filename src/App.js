@@ -15,13 +15,14 @@ function App(props) {
       id: 'task_' + nanoid(),
       value: 'task' + nanoid(),
       checked: false,
-      name: taskName
+      name: taskName,
+      edit: false
     }
     setTasks([...tasks, newTask]);
   }
 
-  const taskList = tasks.map( task => 
-    <TaskItem 
+  const taskList = tasks.map( task => {
+    return <TaskItem 
       id={task.id} 
       value={task.value} 
       checked={task.checked} 
@@ -29,8 +30,9 @@ function App(props) {
       key={task.id}
       toggleTaskCompleted={toggleTaskCompleted}
       deleteTask={deleteTask}
+      editTask={editTask}
     />
-  );
+  });
 
   const textNoun =  taskList.length !== 1 ? ' tasks' : ' task';
   const headingText = taskList.length + textNoun + ' remaining';
@@ -57,6 +59,16 @@ function App(props) {
     // setTasks(t);
     const remainingTasks = tasks.filter( task => task.id !== id);
     setTasks(remainingTasks);
+  }
+
+  function editTask(id, newName) {
+    const editedTask = tasks.map( task => {
+      if (task.id === id) {
+        task.name = newName;
+      }
+      return task;
+    });
+    setTasks(editedTask);
   }
 
   return (
