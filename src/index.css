@@ -94,7 +94,8 @@ code {
   color: inherit;
 }
 
-.filter-task button:hover {
+.filter-task button:hover,
+.filter-task button:focus {
   border: 1px solid black;
   cursor: pointer;
   color: black;

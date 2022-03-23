@@ -15,27 +15,10 @@ function App(props) {
       id: 'task_' + nanoid(),
       value: 'task' + nanoid(),
       checked: false,
-      name: taskName,
-      edit: false
+      name: taskName
     }
     setTasks([...tasks, newTask]);
   }
-
-  const taskList = tasks.map( task => {
-    return <TaskItem 
-      id={task.id} 
-      value={task.value} 
-      checked={task.checked} 
-      name={task.name} 
-      key={task.id}
-      toggleTaskCompleted={toggleTaskCompleted}
-      deleteTask={deleteTask}
-      editTask={editTask}
-    />
-  });
-
-  const textNoun =  taskList.length !== 1 ? ' tasks' : ' task';
-  const headingText = taskList.length + textNoun + ' remaining';
 
   function toggleTaskCompleted(id) { 
     const toggleTasks = tasks.map( task => {
@@ -71,6 +54,46 @@ function App(props) {
     setTasks(editedTask);
   }
 
+  function taskItem(task) {
+    return <TaskItem 
+      id={task.id} 
+      value={task.value} 
+      checked={task.checked} 
+      name={task.name} 
+      key={task.id}
+      toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask={deleteTask}
+      editTask={editTask}
+    />
+  }
+
+  const [filter, setFilter] = useState('all');
+
+  function taskListFiltered() {
+    const taskList = [];
+    tasks.forEach( task => {
+      if (filter === 'all') {
+        taskList.push(taskItem(task));
+      }
+      else if (filter === 'active') {
+        if (!task.checked) {
+          taskList.push(taskItem(task));
+        }
+      } else if (filter === 'completed'){
+        if (task.checked) {
+          taskList.push(taskItem(task));
+        }
+      }
+    });
+    return {taskList: taskList, length: taskList.lenth};
+  }
+  
+  const taskList  = taskListFiltered().taskList;
+  const taskListLength = taskList.length;
+
+  const textNoun = taskListLength !== 1 ? ' tasks' : ' task';
+  const headingText = taskListLength + textNoun + ' remaining';
+
   return (
     <article className='task-list'>
       <h1>Task List</h1>
@@ -78,7 +101,7 @@ function App(props) {
         <AddTask addTask={addTask}/>
       </section>
       <section className='results'>
-        <FilterTask />
+        <FilterTask setFilter= {setFilter} />
         <h2>{headingText}</h2>
         <ul>
           {taskList}
