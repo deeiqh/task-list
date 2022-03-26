@@ -190,3 +190,8 @@ code {
 .results form{ 
   margin: 2em 0;
 }
+
+.results h2:focus { 
+  border: 2px solid black;
+  width: max-content;
+}

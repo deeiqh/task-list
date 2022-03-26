@@ -41,15 +41,6 @@ function App(props) {
   }
 
   function deleteTask(id) {
-    // let t = [];
-    // tasks.map(task => t.push(task));
-    // for (let i=0; i<tasks.length; i++) {
-    //   if (t[i].id === id) {
-    //     t.splice(i, 1);
-    //     break;
-    //   }
-    // }
-    // setTasks(t);
     const remainingTasks = tasks.filter( task => task.id !== id);
     setTasks(remainingTasks);
   }
@@ -107,6 +98,13 @@ function App(props) {
   const textNoun = taskListLength !== 1 ? ' tasks' : ' task';
   const headingText = taskListLength + textNoun + ' remaining';
 
+  const wereTasks = usePrevious(tasks);
+  const refTaskHeading = useRef(null);
+  useEffect( () => {
+    if (wereTasks)
+      refTaskHeading.current.focus();
+  }, [wereTasks]);
+
   return (
     <article className='task-list'>
       <h1>Task List</h1>
@@ -115,7 +113,7 @@ function App(props) {
       </section>
       <section className='results'>
         <FilterTask setFilter= {setFilter} />
-        <h2>{headingText}</h2>
+        <h2 tabIndex= '-1' ref= {refTaskHeading}>{headingText}</h2>
         <ul>
           {taskList}
         </ul>
