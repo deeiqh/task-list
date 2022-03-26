@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import EditTask from './EditTask';
 
 export default function TaskItem(props) {
@@ -19,6 +19,18 @@ export default function TaskItem(props) {
         setEditing(true);
     }
 
+    const wasEditing =  props.usePrevious(isEditing);
+
+    useEffect(() => {
+        if (isEditing) {
+            props.refEditField.current.focus();
+        } else {
+            if (wasEditing) {
+                props.refEditButton.current.focus();
+            }
+        }
+    }, [isEditing, wasEditing]);
+
     return (
         isEditing ?
             <li>
@@ -29,6 +41,7 @@ export default function TaskItem(props) {
                     setNewName= {setNewName} 
                     editTask= {props.editTask}
                     id= {props.id}
+                    refEditField= {props.refEditField}
                 /> 
             </li>
             :
@@ -45,7 +58,7 @@ export default function TaskItem(props) {
                     {props.name}
                 </label>
                 <div>
-                    <button type='button' onClick={handleEdit}>
+                    <button type='button' onClick={handleEdit} ref= {props.refEditButton}>
                         Edit 
                         <span className='hidden-text'>
                             {props.taskName}

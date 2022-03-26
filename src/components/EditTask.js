@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 export default function EditTask(props) {
 
@@ -20,7 +20,14 @@ export default function EditTask(props) {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor='new_name'>New name for {props.name}</label>
-            <input type='text' id='new_name' onChange={handleChange} value={props.newName} autoComplete='off'/>
+            <input 
+                type='text' 
+                id='new_name' 
+                onChange={handleChange} 
+                value={props.newName} 
+                autoComplete='off'
+                ref={props.refEditField}
+            />
             <div>
                 <button type='button' onClick={handleCancel}>Cancel</button>
                 <button type='submit'>Save</button>

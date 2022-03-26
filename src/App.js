@@ -3,12 +3,22 @@
 import TaskItem from './components/TaskItem'
 import FilterTask from './components/FilterTask'
 import AddTask from './components/AddTask'
-import  React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { nanoid } from 'nanoid';
 
 function App(props) {
 
+  function usePrevious(state){
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = state;
+    });
+    return ref.current;
+  }
+
   const [tasks, setTasks] = useState(props.tasks);
+  const refEditField = useRef(null);
+  const refEditButton = useRef(null);
 
   function addTask(taskName) {
     const newTask = {
@@ -64,6 +74,9 @@ function App(props) {
       toggleTaskCompleted={toggleTaskCompleted}
       deleteTask={deleteTask}
       editTask={editTask}
+      refEditField={refEditField}
+      refEditButton= {refEditButton}
+      usePrevious= {usePrevious}
     />
   }
 
