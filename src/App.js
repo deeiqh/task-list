@@ -98,12 +98,12 @@ function App(props) {
   const textNoun = taskListLength !== 1 ? ' tasks' : ' task';
   const headingText = taskListLength + textNoun + ' remaining';
 
-  const wereTasks = usePrevious(tasks);
+  const wereTasks = usePrevious(tasks.length);
   const refTaskHeading = useRef(null);
   useEffect( () => {
-    if (wereTasks)
+    if (wereTasks - tasks.length === 1)
       refTaskHeading.current.focus();
-  }, [wereTasks]);
+  }, [wereTasks, tasks.length]);
 
   return (
     <article className='task-list'>
